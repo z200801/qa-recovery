@@ -1,6 +1,7 @@
 #!/bin/sh
 
-DIR_NAME="/home/user/mnt/test_fat32"
+BASE_DIR=~
+DIR_NAME="$BASE_DIR/mnt/test_fat32"
 
 fname_sizes="1M"
 
