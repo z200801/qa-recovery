@@ -14,21 +14,29 @@ FILENAME_ORIGINAL_CONTAINER="test_fat32.img"
 FILENAME_TC1="test_fat32_tc1.img"
 
 # 1
+echo "#1 Copy container"
+echo "$FILENAME_ORIGINAL_CONTAINER $FILENAME_TC1"
 cp $FILENAME_ORIGINAL_CONTAINER $FILENAME_TC1
 
 # 2
+echo "#2 Mount new conteiner"
 mkdir -p $DIR_NAME
 sudo mount --rw -t vfat -o uid=`users` $FILENAME_TC1 $DIR_NAME
 
 # 3
+echo "#3 Delete some files"
+echo "cd to directory $DIR_NAME"
 cd $DIR_NAME ||   { echo "Failure #3 "; exit 1; }
 file_will_be_delete=`find . -type f -name "*"| shuf -n $MAX_DELETE_FILES`
+file_all=`find . -type f -name "*"`
 
 for i in $file_will_be_delete
 do
-  echo $i
+  echo "Delete file:$i"
+  rm $i
 done
 
 # 4
+echo "#4 Unmount container: $DIR_NAME""
 sudo umount $DIR_NAME
 rm -rf $DIR_NAME
