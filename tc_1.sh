@@ -37,6 +37,6 @@ do
 done
 
 # 4 Unmount container
-echo "#4 Unmount container: $DIR_NAME""
+echo "#4 Unmount container: $DIR_NAME"
 sudo umount $DIR_NAME
 rm -rf $DIR_NAME
