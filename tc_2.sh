@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# TestCase 2
+# TestCase 2 - Standard deletion of overwritten files with the same name
 # 1. Script copy original fs container
 # 2. Mounting
 # 3. Delete some files
