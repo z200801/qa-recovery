@@ -23,7 +23,7 @@ echo "$FILENAME_ORIGINAL_CONTAINER $FILENAME_TC1"
 cp $FILENAME_ORIGINAL_CONTAINER $FILENAME_TC1
 
 # 2 Mounting
-echo "#2 Mount new conteiner"
+echo "#2 Mount new conteiner:$CUR_DIR/$FILENAME_TC1"
 mkdir -p $DIR_NAME
 sudo mount --rw -t vfat -o uid=`users` $CUR_DIR/$FILENAME_TC1 $DIR_NAME
 
@@ -41,17 +41,19 @@ do
 done
 
 # 4 Unmount container
-echo "#5 Unmount container: $DIR_NAME"
+echo "#4 Unmount container: $DIR_NAME"
+cd $BASE_DIR
 sudo umount $DIR_NAME
 rm -rf $DIR_NAME
 
-# 5 Mounting
-echo "#2 Mount new conteiner"
+# 5 Mounting existing conteiner
+echo "#5 Mount conteiner:$CUR_DIR/$FILENAME_TC1"
 mkdir -p $DIR_NAME
 sudo mount --rw -t vfat -o uid=`users` $CUR_DIR/$FILENAME_TC1 $DIR_NAME
 
 # 6 Create files with name deleted files
-echo "#4 Create files"
+echo "#6 Create files with name deleted files"
+cd $DIR_NAME ||   { echo "Failure #6 "; exit 1; }
 for i in $file_will_be_delete
 do
   echo "Create file:$i"
@@ -61,5 +63,6 @@ done
 
 # 7 Unmount container
 echo "#5 Unmount container: $DIR_NAME"
+cd $BASE_DIR
 sudo umount $DIR_NAME
 rm -rf $DIR_NAME
