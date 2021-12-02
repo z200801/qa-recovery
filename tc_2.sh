@@ -4,8 +4,10 @@
 # 1. Script copy original fs container
 # 2. Mounting
 # 3. Delete some files
-# 4. Create files with name deleted files
-# 5. Unmount container
+# 4. Unmount container
+# 5. Mounting
+# 6. Create files with name deleted files
+# 7. Unmount container
 
 BASE_DIR=~
 CUR_DIR=`pwd`
@@ -15,17 +17,17 @@ FILENAME_ORIGINAL_CONTAINER="test_fat32.img"
 FILENAME_TC1="test_fat32_tc2.img"
 fname_sizes="1M"
 
-# 1
+# 1 copy original fs container
 echo "#1 Copy container"
 echo "$FILENAME_ORIGINAL_CONTAINER $FILENAME_TC1"
 cp $FILENAME_ORIGINAL_CONTAINER $FILENAME_TC1
 
-# 2
+# 2 Mounting
 echo "#2 Mount new conteiner"
 mkdir -p $DIR_NAME
-sudo mount --rw -t vfat -o uid=`users` $FILENAME_TC1 $DIR_NAME
+sudo mount --rw -t vfat -o uid=`users` $CUR_DIR/$FILENAME_TC1 $DIR_NAME
 
-# 3
+# 3 Delete some files
 echo "#3 Delete some files"
 echo "cd to directory $DIR_NAME"
 cd $DIR_NAME ||   { echo "Failure #3 "; exit 1; }
@@ -38,7 +40,17 @@ do
   rm $i
 done
 
-# 4
+# 4 Unmount container
+echo "#5 Unmount container: $DIR_NAME"
+sudo umount $DIR_NAME
+rm -rf $DIR_NAME
+
+# 5 Mounting
+echo "#2 Mount new conteiner"
+mkdir -p $DIR_NAME
+sudo mount --rw -t vfat -o uid=`users` $CUR_DIR/$FILENAME_TC1 $DIR_NAME
+
+# 6 Create files with name deleted files
 echo "#4 Create files"
 for i in $file_will_be_delete
 do
@@ -47,7 +59,7 @@ do
 done
 
 
-# 5
-echo "#5 Unmount container: $DIR_NAME""
+# 7 Unmount container
+echo "#5 Unmount container: $DIR_NAME"
 sudo umount $DIR_NAME
 rm -rf $DIR_NAME
