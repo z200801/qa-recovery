@@ -1,13 +1,17 @@
 #!/bin/sh
 
-# TestCase 1 - Standard file deletion
+# TestCase 2 - Standard deletion of overwritten files with the same name
 # 0. Making and fill container
 # 1. Script copy original fs container
 # 2. Mounting
 # 3. Delete some files
 # 4. Unmount container
+# 5. Mounting
+# 6. Create files with name deleted files
+# 7. Unmount container
 
-TESTCASE=1
+
+TESTCASE=2
 BASE_DIR=~
 CUR_DIR=`pwd`
 cur_user=`users`
@@ -108,8 +112,9 @@ delete_files_in_container()
 # Create files with name deleted files
 create_files_some_names_in_container()
 {
-  echo "#6 Create files with name deleted files"
+  echo "#create_files_some_names_in_container: Create files with name deleted files"
   cd $DIR_MOUNT ||   { echo "Failure #create_files_some_names_in_container "; exit 1; }
+  echo "file_will_be_delete: $file_will_be_delete"
   for i in $file_will_be_delete
     do
       echo "Create file:$i"
@@ -144,4 +149,17 @@ delete_files_in_container $MAX_DELETE_FILES
 
 # 4 Unmount container
 echo "#4 Unmount container: $DIR_MOUNT"
+umount_container $DIR_MOUNT
+
+# 5 Mounting
+echo "#5 Mount new conteiner"
+echo "$TESTCASE_DIR/$FILENAME_TC"
+mount_container $TESTCASE_DIR/$FILENAME_TC $DIR_MOUNT
+
+# 6 Create files with name deleted files
+echo "#6 Create files with name deleted files"
+create_files_some_names_in_container
+
+# 7 Unmount container
+echo "#7 Unmount container: $DIR_MOUNT"
 umount_container $DIR_MOUNT
