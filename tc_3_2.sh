@@ -60,7 +60,7 @@ umount_container()
 {
 # UnMount container
  echo "#Function: umount container"
- cd $CUR_DIR
+  cd $CUR_DIR
  sudo umount $1
  rm -rf $1
 }
