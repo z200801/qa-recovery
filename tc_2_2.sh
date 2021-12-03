@@ -107,6 +107,7 @@ delete_files_in_container()
       echo "Delete file:$i"
       rm $i
     done
+  cd $CUR_DIR
 }
 
 # Create files with name deleted files
@@ -120,6 +121,7 @@ create_files_some_names_in_container()
       echo "Create file:$i"
       dd if=/dev/urandom of=$i bs=$fname_sizes count=1 status=none
     done
+  cd $CUR_DIR
 }
 
 # ==========================================================================================
