@@ -115,6 +115,7 @@ create_files_some_names_in_container()
       echo "Create file:$i"
       dd if=/dev/urandom of=$i bs=$fname_sizes count=1 status=none
     done
+  cd $CUR_DIR
 }
 
 # Create files with another name
@@ -127,6 +128,7 @@ create_files_new_names_in_container()
       echo "Create file:$i"
       dd if=/dev/urandom of="$i.new" bs=$fname_sizes count=1 status=none
     done
+  cd $CUR_DIR
 }
 
 # ==========================================================================================
