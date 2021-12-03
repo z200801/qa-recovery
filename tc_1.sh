@@ -28,10 +28,6 @@ TEST_DIRNAME="test"
 TEST_FILENAME="test_file"
 TEST_FILE_EXT="dat"
 
-file_md5=$TESTCASE_DIR/$MOUNT_FILENAME.md5
-
-
-
 # 0 Making container
 # making_container $FILENAME_TC_ORIGINAL $DIR_MOUNT $SIZE_CONTAINER
 making_container()
@@ -49,6 +45,7 @@ mount_container()
 # Mount container
  #sudo mount --rw -t vfat -o uid=`users` $FILENAME_TC_ORIGINAL $DIR_MOUNT
  echo "#Function: mount container"
+ mkdir -p $DIR_MOUNT
  sudo mount --rw -t vfat -o uid=$cur_user $1 $2
 }
 
@@ -58,6 +55,7 @@ umount_container()
 {
 # UnMount container
  echo "#Function: umount container"
+ cd $CUR_DIR
  sudo umount $1
  rm -rf $1
 }
@@ -67,9 +65,12 @@ umount_container()
 create_files_in_container()
 {
   MOUNT_FILENAME=`mount|grep $cur_user|grep mnt|awk {'print $1'}|sed 's/.*\///'`
+  file_md5=$TESTCASE_DIR/$MOUNT_FILENAME.md5
 
   mkdir $DIR_MOUNT/$TEST_DIRNAME
   touch $file_md5
+
+  echo "file_md5: $file_md5"
 
   for i_dir in `seq 1 $MAX_DIR`
   do
@@ -114,21 +115,19 @@ making_container $TESTCASE_DIR/$FILENAME_TC_ORIGINAL $DIR_MOUNT $SIZE_CONTAINER
 mount_container $TESTCASE_DIR/$FILENAME_TC_ORIGINAL $DIR_MOUNT
 create_files_in_container
 umount_container $DIR_MOUNT
-exit 0
 
 # 1 copy original fs container to modify container
 echo "#1 Copy container"
-echo "$TESTCASE_DIR/$FILENAME_ORIGINAL_CONTAINER $TESTCASE_DIR/$FILENAME_TC"
-cp $TESTCASE_DIR/$FILENAME_ORIGINAL_CONTAINER $TESTCASE_DIR/$FILENAME_TC
+cp $TESTCASE_DIR/$FILENAME_TC_ORIGINAL $TESTCASE_DIR/$FILENAME_TC
 
 # 2 Mounting
 echo "#2 Mount new conteiner"
+echo "$TESTCASE_DIR/$FILENAME_TC"
 mount_container $TESTCASE_DIR/$FILENAME_TC $DIR_MOUNT
 
 # 3 Deleting files
 echo "#3 Deleting files"
 delete_files_in_container $MAX_DELETE_FILES
-
 
 # 4 Unmount container
 echo "#4 Unmount container: $DIR_MOUNT"
