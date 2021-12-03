@@ -17,7 +17,6 @@ TESTCASE_DIR=$CUR_DIR"/tc_$TESTCASE"
 
 DIR_MOUNT="$BASE_DIR/mnt/test_fat32"
 MAX_DELETE_FILES=2
-FILENAME_ORIGINAL_CONTAINER="test_fat32.img"
 FILENAME_TC_ORIGINAL="test_fat32_tc"$TESTCASE"_original.img"
 FILENAME_TC="test_fat32_tc"$TESTCASE"_modify.img"
 SIZE_CONTAINER=20
@@ -27,7 +26,9 @@ MAX_FILES=2
 TEST_DIRNAME="test"
 TEST_FILENAME="test_file"
 TEST_FILE_EXT="dat"
+RECOVERY_DIR="recovery"
 
+# ==========================================================================================
 # 0 Making container
 # making_container $FILENAME_TC_ORIGINAL $DIR_MOUNT $SIZE_CONTAINER
 making_container()
@@ -97,7 +98,6 @@ delete_files_in_container()
   cd $DIR_MOUNT ||   { echo "Failure #Function delete_files_in_container "; exit 1; }
   file_will_be_delete=`find . -type f -name "*"| shuf -n $1`
   # file_all=`find . -type f -name "*"`
-
   for i in $file_will_be_delete
     do
       echo "Delete file:$i"
@@ -105,12 +105,13 @@ delete_files_in_container()
     done
 }
 
-
+# ==========================================================================================
 # Main
 echo "#0 Making and fill container"
 rm -rf $TESTCASE_DIR
 mkdir -p $TESTCASE_DIR
-echo "Making container"
+mkdir -p $TESTCASE_DIR/$RECOVERY_DIR
+
 making_container $TESTCASE_DIR/$FILENAME_TC_ORIGINAL $DIR_MOUNT $SIZE_CONTAINER
 mount_container $TESTCASE_DIR/$FILENAME_TC_ORIGINAL $DIR_MOUNT
 create_files_in_container
