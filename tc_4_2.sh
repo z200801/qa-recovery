@@ -36,3 +36,6 @@ delete_files_in_container $MAX_DELETE_FILES
 # 4 Force Unmount container
 echo "#4 Force Unmount container: $DIR_MOUNT"
 umount_container_force $DIR_MOUNT
+
+mnt_container=$(search_mount_container)
+if [ $mnt_container ]; then { echo "Failure: conteiner mounted:$mnt_container";} fi
