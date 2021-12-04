@@ -108,6 +108,9 @@ delete_files_in_container()
   echo "cd to directory $DIR_MOUNT"
   cd $DIR_MOUNT ||   { echo "Failure #Function delete_files_in_container "; exit 1; }
   file_will_be_delete=`find . -type f -name "*"| shuf -n $1`
+  # logging what a file we deleted
+  # write need before deleting and saving information on a image containers
+  echo "$file_will_be_delete">$TESTCASE_DIR/$FILENAME_TC".log"
   # file_all=`find . -type f -name "*"`
   for i in $file_will_be_delete
     do
