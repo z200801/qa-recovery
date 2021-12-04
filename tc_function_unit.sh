@@ -146,7 +146,7 @@ create_files_new_names_in_container()
 # formating_container $FILENAME_TC
 formating_container()
 {
-  #2. Formating container
+  # 2. Formating container
   echo "#Function: Formating container"
   mkfs.vfat $1
 }
@@ -171,6 +171,7 @@ create_and_fill_container()
 search_mount_container()
 {
   MOUNT_FILENAME=`mount|grep $cur_user|grep mnt|awk {'print $1'}|sed 's/.*\///'`
-  echo "Search mount point"
-  echo "MOUNT_FILENAME: $MOUNT_FILENAME"
+  # echo "Search mount point"
+  echo $MOUNT_FILENAME
+
 }

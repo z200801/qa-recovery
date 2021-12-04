@@ -18,8 +18,10 @@ TESTCASE_N=2
 # ==========================================================================================
 # Main
 clear
-echo "#0 Making and fill container"
+mnt_container=$(search_mount_container)
+if [ $mnt_container ]; then    { echo "Failure: conteiner mounted:$mnt_container"; exit 1; } fi
 
+echo "#0 Making and fill container"
 create_and_fill_container $TESTCASE_DIR/$FILENAME_TC_ORIGINAL $DIR_MOUNT
 
 # 1 copy original fs container to modify container
