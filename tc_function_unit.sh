@@ -22,7 +22,7 @@ TEST_DIRNAME="test"
 TEST_FILENAME="test_file"
 TEST_FILE_EXT="db"
 RECOVERY_DIR="recovery"
-recovery_dir_array="diskdrill rundelete pc-inspector testdisk wise-dr drw"
+recovery_dir_array="diskdrill testdisk r-studio datarescue"
 
 # ==========================================================================================
 # 0 Making container
