@@ -32,7 +32,7 @@ for i_file in $files_2_compare
     echo "md5_original_file:$md5_original_file"
     md5_recovered_file=`grep $file_name_to_compare $md5_recovery_file|awk {'print $1'}`
     echo "md5_recovered_file:$md5_recovered_file"
-    if [ md5_original_file != md5_recovered_file ]; then
+    if [ $md5_original_file != $md5_recovered_file ]; then
       echo "md5 different"
       else  echo "md5 is matched"
     fi

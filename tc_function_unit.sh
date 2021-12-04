@@ -20,7 +20,7 @@ MAX_DIR=2
 MAX_FILES=2
 TEST_DIRNAME="test"
 TEST_FILENAME="test_file"
-TEST_FILE_EXT="dat"
+TEST_FILE_EXT="db"
 RECOVERY_DIR="recovery"
 recovery_dir_array="diskdrill rundelete pc-inspector testdisk wise-dr drw"
 
