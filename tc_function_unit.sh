@@ -1,12 +1,8 @@
 #!/bin/sh
 
-# TestCase 1 - Standard file deletion
-# 0. Making and fill container
-# 1. Script copy original fs container
-# 2. Mounting
-# 3. Delete some files
-# 4. Unmount container
 
+
+TESTCASE=$TESTCASE_N
 BASE_DIR=~
 CUR_DIR=`pwd`
 cur_user=`users`
@@ -55,6 +51,7 @@ umount_container()
 {
 # UnMount container
  echo "#Function: umount container"
+ echo "CUR_DIR:$CUR_DIR"
  cd $CUR_DIR
  sudo umount $1
  rm -rf $1
@@ -65,6 +62,7 @@ umount_container_force()
 {
 # Force UnMount container
  echo "#Function: umount force container"
+ echo "CUR_DIR:$CUR_DIR"
  cd $CUR_DIR
  sudo umount -f $1
  rm -rf $1
@@ -115,6 +113,7 @@ delete_files_in_container()
       echo "Delete file:$i"
       rm $i
     done
+  cd $CUR_DIR
 }
 
 # Create files with name deleted files
@@ -149,4 +148,18 @@ formating_container()
   #2. Formating container
   echo "#Function: Formating container"
   mkfs.vfat $1
+}
+
+# Create and fill container
+# create_and_fill_container $TESTCASE_DIR/$FILENAME_TC_ORIGINAL $DIR_MOUNT
+create_and_fill_container()
+{
+  echo "#0: Making container"
+  making_container $1 $2 $SIZE_CONTAINER
+  echo "#0: Mount container"
+  mount_container $1 $2
+  echo "#0: Create files in container"
+  create_files_in_container
+  echo "#0: UnMount container"
+  umount_container $DIR_MOUNT
 }

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-TESTCASE=2
+TESTCASE_N=2
 . ./tc_function_unit.sh
 
 # TestCase 2 - Standard deletion of overwritten files with the same name
@@ -22,14 +22,16 @@ rm -rf $TESTCASE_DIR
 mkdir -p $TESTCASE_DIR
 mkdir -p $TESTCASE_DIR/$RECOVERY_DIR
 
-echo "#0: Making container"
-making_container $TESTCASE_DIR/$FILENAME_TC_ORIGINAL $DIR_MOUNT $SIZE_CONTAINER
-echo "#0: Mount container"
-mount_container $TESTCASE_DIR/$FILENAME_TC_ORIGINAL $DIR_MOUNT
-echo "#0: Create files in container"
-create_files_in_container
-echo "#0: UnMount container"
-umount_container $DIR_MOUNT
+#echo "#0: Making container"
+#making_container $TESTCASE_DIR/$FILENAME_TC_ORIGINAL $DIR_MOUNT $SIZE_CONTAINER
+#echo "#0: Mount container"
+#mount_container $TESTCASE_DIR/$FILENAME_TC_ORIGINAL $DIR_MOUNT
+#echo "#0: Create files in container"
+#create_files_in_container
+#echo "#0: UnMount container"
+#umount_container $DIR_MOUNT
+
+create_and_fill_container $TESTCASE_DIR/$FILENAME_TC_ORIGINAL $DIR_MOUNT
 
 # 1 copy original fs container to modify container
 echo "#1 Copy container"
