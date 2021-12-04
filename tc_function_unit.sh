@@ -54,6 +54,8 @@ umount_container()
  echo "CUR_DIR:$CUR_DIR"
  cd $CUR_DIR
  sudo umount $1
+ echo "Unmount done"
+ echo "Remove dir:$1"
  rm -rf $1
 }
 
@@ -75,7 +77,6 @@ create_files_in_container()
   MOUNT_FILENAME=`mount|grep $cur_user|grep mnt|awk {'print $1'}|sed 's/.*\///'`
   file_md5="$TESTCASE_DIR/$MOUNT_FILENAME.md5"
   echo "MOUNT_FILENAME: $MOUNT_FILENAME"
-  echo "file_md5: $file_md5"
 
   mkdir $DIR_MOUNT/$TEST_DIRNAME
   touch $file_md5
@@ -119,7 +120,7 @@ delete_files_in_container()
 # Create files with name deleted files
 create_files_some_names_in_container()
 {
-  echo "#6 Create files with name deleted files"
+  echo "#Function: Create files with name deleted files"
   cd $DIR_MOUNT ||   { echo "Failure #create_files_some_names_in_container "; exit 1; }
   for i in $file_will_be_delete
     do
@@ -154,12 +155,22 @@ formating_container()
 # create_and_fill_container $TESTCASE_DIR/$FILENAME_TC_ORIGINAL $DIR_MOUNT
 create_and_fill_container()
 {
-  echo "#0: Making container"
+  rm -rf $TESTCASE_DIR
+  mkdir -p $TESTCASE_DIR
+  mkdir -p $TESTCASE_DIR/$RECOVERY_DIR
+#  echo "#0: Making container"
   making_container $1 $2 $SIZE_CONTAINER
-  echo "#0: Mount container"
+#  echo "#0: Mount container"
   mount_container $1 $2
-  echo "#0: Create files in container"
+#  echo "#0: Create files in container"
   create_files_in_container
-  echo "#0: UnMount container"
+#  echo "#0: UnMount container"
   umount_container $DIR_MOUNT
+}
+
+search_mount_container()
+{
+  MOUNT_FILENAME=`mount|grep $cur_user|grep mnt|awk {'print $1'}|sed 's/.*\///'`
+  echo "Search mount point"
+  echo "MOUNT_FILENAME: $MOUNT_FILENAME"
 }
