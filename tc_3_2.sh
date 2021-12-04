@@ -65,6 +65,16 @@ umount_container()
  rm -rf $1
 }
 
+# Umnounting force
+umount_container_force()
+{
+# Force UnMount container
+ echo "#Function: umount force container"
+ cd $CUR_DIR
+ sudo umount -f $1
+ rm -rf $1
+}
+
 #Create files in container
 #Create test file with filling from /dev/urandom and calculate md5 sum
 create_files_in_container()
