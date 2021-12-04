@@ -110,7 +110,7 @@ delete_files_in_container()
   file_will_be_delete=`find . -type f -name "*"| shuf -n $1`
   # logging what a file we deleted
   # write need before deleting and saving information on a image containers
-  echo "$file_will_be_delete">$TESTCASE_DIR/$FILENAME_TC".log"
+  echo "$file_will_be_delete">$TESTCASE_DIR/$FILENAME_TC"_delete.log"
   # file_all=`find . -type f -name "*"`
   for i in $file_will_be_delete
     do
