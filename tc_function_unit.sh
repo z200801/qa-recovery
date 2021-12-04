@@ -7,7 +7,6 @@
 # 3. Delete some files
 # 4. Unmount container
 
-TESTCASE=1
 BASE_DIR=~
 CUR_DIR=`pwd`
 cur_user=`users`
@@ -76,7 +75,9 @@ umount_container_force()
 create_files_in_container()
 {
   MOUNT_FILENAME=`mount|grep $cur_user|grep mnt|awk {'print $1'}|sed 's/.*\///'`
-  file_md5=$TESTCASE_DIR/$MOUNT_FILENAME.md5
+  file_md5="$TESTCASE_DIR/$MOUNT_FILENAME.md5"
+  echo "MOUNT_FILENAME: $MOUNT_FILENAME"
+  echo "file_md5: $file_md5"
 
   mkdir $DIR_MOUNT/$TEST_DIRNAME
   touch $file_md5
@@ -96,6 +97,7 @@ create_files_in_container()
 
   cd $DIR_MOUNT
   find . -type f -name "*" -exec md5sum {} \; >$file_md5
+  cd $CUR_DIR
 }
 
 # 3 Delete some files
