@@ -1,6 +1,6 @@
 #!/bin/sh
 
-
+# Main library for making testcases scripts
 
 TESTCASE=$TESTCASE_N
 BASE_DIR=~
