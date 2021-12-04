@@ -14,6 +14,8 @@ CUR_DIR=`pwd`
 RECOVERY_DIR="$CUR_DIR/recovery"
 #Search files in recovery directory and create md5 sum
 
+echo "RECOVERY_DIR: $RECOVERY_DIR"
+
 cd $RECOVERY_DIR
 find . -type f -name "*" -exec md5sum {} \; >$fname_md5
 
