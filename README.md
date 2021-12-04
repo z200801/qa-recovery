@@ -1,5 +1,5 @@
-# qa-recovery
-TestCase shell code making test FAT16 containers for testing some recovery utils.
+# qa-recovery \n
+TestCase shell code making test FAT16 containers for testing some recovery utils. \n
 File tc_function_unit_sh is a shell library with some functions.
 TestCase 1 - Standard file deletion
 TestCase 2 - Standard deletion of overwritten files with the same name
