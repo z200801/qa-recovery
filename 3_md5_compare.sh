@@ -1,6 +1,6 @@
 #!/bin/sh
 
-TESTCASE=2
+TESTCASE=3
 #. ./tc_function_unit.sh
 
 md5_dir=$CUR_DIR/"md5"
@@ -8,6 +8,14 @@ md5_recovery_file="recovery_files.md5"
 md5_deleted_files_log="test_fat32_tc"$TESTCASE"_modify.img_delete.log"
 md5_original="test_fat32_tc"$TESTCASE"_original.img.md5"
 md5_deleted_files="test_fat32_tc"$TESTCASE"_modify.img.deleted_files.md5"
+
+fname_md5="recovery_files.md5"
+CUR_DIR=`pwd`
+RECOVERY_DIR="recovery"
+#Search files in recovery directory and create md5 sum
+
+cd $RECOVERY_DIR
+find . -type f -name "*" -exec md5sum {} \; >$CUR_DIR/$fname_md5
 
 # echo "cd to:$md5_dir"
 cd $md5_dir
