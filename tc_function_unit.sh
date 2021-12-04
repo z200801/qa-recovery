@@ -179,3 +179,20 @@ search_mount_container()
      }
   fi
 }
+
+# Damage conteiner
+# damage_container $FILENAME_TC $COUNT_BYTE_TO_DAMAGE $SEEK_TO_DAMAGE
+damage_container()
+{
+  echo "#Function: damage_container"
+  #dd if=/dev/urandom of=$1 bs=1 count=$(($COUNT_BYTE_TO_DAMAGE)) seek=$(($SEEK_TO_DAMAGE)) conv=notrunc status=none
+  dd if=/dev/urandom of=$1 bs=1 count=$(($2)) seek=$(($3)) conv=notrunc status=none
+}
+
+# Compare containers
+# compare_containers $FILENAME_ORIGINAL_CONTAINER $FILENAME_TC
+compare_containers()
+{
+  echo "#Function: compare_containers"
+  cmp -b -c $1 $2
+}
