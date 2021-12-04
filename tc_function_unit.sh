@@ -22,6 +22,7 @@ TEST_DIRNAME="test"
 TEST_FILENAME="test_file"
 TEST_FILE_EXT="dat"
 RECOVERY_DIR="recovery"
+recovery_dir_array="diskdrill rundelete pc-inspector testdisk wise-dr drw"
 
 # ==========================================================================================
 # 0 Making container
@@ -155,6 +156,15 @@ formating_container()
   mkfs.vfat $1
 }
 
+tst1()
+{
+  for i in $recovery_dir_array
+  do
+    echo "i:$i"
+
+  done
+}
+
 # Create and fill container
 # create_and_fill_container $TESTCASE_DIR/$FILENAME_TC_ORIGINAL $DIR_MOUNT
 create_and_fill_container()
@@ -162,6 +172,11 @@ create_and_fill_container()
   rm -rf $TESTCASE_DIR
   mkdir -p $TESTCASE_DIR
   mkdir -p $TESTCASE_DIR/$RECOVERY_DIR
+  #making directory for some recovery utils
+  for i in $recovery_dir_array
+  do
+    mkdir -p $TESTCASE_DIR/$RECOVERY_DIR/$i
+  done
 #  echo "#0: Making container"
   making_container $1 $2 $SIZE_CONTAINER
 #  echo "#0: Mount container"
