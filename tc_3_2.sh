@@ -18,7 +18,7 @@ TESTCASE_N=3
 # Main
 clear
 mnt_container=$(search_mount_container)
-if [ $mnt_container ]; then    { echo "Failure: conteiner mounted:$mnt_container"; exit 1; } fi
+if [ $mnt_container ]; then { echo "Failure: conteiner mounted:$mnt_container"; exit 1; } fi
 
 echo "#0 Making and fill container"
 create_and_fill_container $TESTCASE_DIR/$FILENAME_TC_ORIGINAL $DIR_MOUNT
@@ -41,7 +41,11 @@ echo "#4 Unmount container: $DIR_MOUNT"
 umount_container $DIR_MOUNT
 
 mnt_container=$(search_mount_container);
-if [ $mnt_container ]; then { echo "Failure: conteiner mounted:$mnt_container"} fi
+if [ $mnt_container ]; then
+  { echo "Failure: conteiner mounted:$mnt_container"
+    lsof|grep "home/user/mnt/test_fat32"
+}
+fi
 
 # 5 Mounting
 echo "#5 Mount new conteiner"
@@ -57,6 +61,4 @@ echo "#7 Unmount container: $DIR_MOUNT"
 umount_container $DIR_MOUNT
 
 mnt_container=$(search_mount_container)
-if [ $mnt_container ]; then
-   echo "Failure: conteiner mounted:$mnt_container"
-fi
+if [ $mnt_container ]; then { echo "Failure: conteiner mounted:$mnt_container";} fi

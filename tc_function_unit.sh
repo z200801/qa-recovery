@@ -75,7 +75,7 @@ umount_container_force()
 create_files_in_container()
 {
   MOUNT_FILENAME=`mount|grep $cur_user|grep mnt|awk {'print $1'}|sed 's/.*\///'`
-  file_md5="$TESTCASE_DIR/$MOUNT_FILENAME.md5"
+  file_md5=$TESTCASE_DIR/$MOUNT_FILENAME".md5"
   echo "MOUNT_FILENAME: $MOUNT_FILENAME"
 
   mkdir $DIR_MOUNT/$TEST_DIRNAME
@@ -172,6 +172,10 @@ search_mount_container()
 {
   MOUNT_FILENAME=`mount|grep $cur_user|grep mnt|awk {'print $1'}|sed 's/.*\///'`
   # echo "Search mount point"
-  echo $MOUNT_FILENAME
-
+  #echo $MOUNT_FILENAME
+  if [ $MOUNT_FILENAME ]; then
+     {
+       echo $MOUNT_FILENAME
+     }
+  fi
 }
