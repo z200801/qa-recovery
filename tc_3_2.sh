@@ -147,6 +147,13 @@ create_files_new_names_in_container()
     cd $CUR_DIR
 }
 
+# formating_container $FILENAME_TC
+formating_container()
+{
+  #2. Formating container
+  echo "#Function: Formating container"
+  mkfs.vfat $1
+}
 # ==========================================================================================
 # Main
 echo "#0 Making and fill container"

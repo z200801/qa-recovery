@@ -1,17 +1,11 @@
 #!/bin/sh
 
-# TestCase 2 - Standard deletion of overwritten files with the same name
+# TestCase 5 - formating container
 # 0. Making and fill container
 # 1. Script copy original fs container
-# 2. Mounting
-# 3. Delete some files
-# 4. Unmount container
-# 5. Mounting
-# 6. Create files with name deleted files
-# 7. Unmount container
+# 2. Formating container
 
-
-TESTCASE=2
+TESTCASE=5
 BASE_DIR=~
 CUR_DIR=`pwd`
 cur_user=`users`
@@ -117,15 +111,13 @@ delete_files_in_container()
       echo "Delete file:$i"
       rm $i
     done
-  cd $CUR_DIR
 }
 
 # Create files with name deleted files
 create_files_some_names_in_container()
 {
-  echo "#create_files_some_names_in_container: Create files with name deleted files"
+  echo "#6 Create files with name deleted files"
   cd $DIR_MOUNT ||   { echo "Failure #create_files_some_names_in_container "; exit 1; }
-  echo "file_will_be_delete: $file_will_be_delete"
   for i in $file_will_be_delete
     do
       echo "Create file:$i"
@@ -137,13 +129,14 @@ create_files_some_names_in_container()
 # Create files with another name
 create_files_new_names_in_container()
 {
-  echo "#6 Create files with name deleted files"
+  echo "#Function: Create files with name deleted files"
   cd $DIR_MOUNT ||   { echo "Failure #create_files_some_names_in_container "; exit 1; }
   for i in $file_will_be_delete
     do
       echo "Create file:$i.new"
       dd if=/dev/urandom of="$i.new" bs=$fname_sizes count=1 status=none
     done
+  cd $CUR_DIR
 }
 
 # formating_container $FILENAME_TC
@@ -169,28 +162,6 @@ umount_container $DIR_MOUNT
 echo "#1 Copy container"
 cp $TESTCASE_DIR/$FILENAME_TC_ORIGINAL $TESTCASE_DIR/$FILENAME_TC
 
-# 2 Mounting
-echo "#2 Mount new conteiner"
-echo "$TESTCASE_DIR/$FILENAME_TC"
-mount_container $TESTCASE_DIR/$FILENAME_TC $DIR_MOUNT
-
-# 3 Deleting files
-echo "#3 Deleting files"
-delete_files_in_container $MAX_DELETE_FILES
-
-# 4 Unmount container
-echo "#4 Unmount container: $DIR_MOUNT"
-umount_container $DIR_MOUNT
-
-# 5 Mounting
-echo "#5 Mount new conteiner"
-echo "$TESTCASE_DIR/$FILENAME_TC"
-mount_container $TESTCASE_DIR/$FILENAME_TC $DIR_MOUNT
-
-# 6 Create files with name deleted files
-echo "#6 Create files with name deleted files"
-create_files_some_names_in_container
-
-# 7 Unmount container
-echo "#7 Unmount container: $DIR_MOUNT"
-umount_container $DIR_MOUNT
+#2. Formating container
+echo "#2 Formating container"
+formating_container $TESTCASE_DIR/$FILENAME_TC

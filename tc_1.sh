@@ -131,7 +131,7 @@ create_files_some_names_in_container()
 # Create files with another name
 create_files_new_names_in_container()
 {
-  echo "#6 Create files with name deleted files"
+  echo "#Function: Create files with name deleted files"
   cd $DIR_MOUNT ||   { echo "Failure #create_files_some_names_in_container "; exit 1; }
   for i in $file_will_be_delete
     do
@@ -141,6 +141,13 @@ create_files_new_names_in_container()
   cd $CUR_DIR
 }
 
+# formating_container $FILENAME_TC
+formating_container()
+{
+  #2. Formating container
+  echo "#Function: Formating container"
+  mkfs.vfat $1
+}
 # ==========================================================================================
 # Main
 echo "#0 Making and fill container"
