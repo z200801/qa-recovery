@@ -194,5 +194,6 @@ damage_container()
 compare_containers()
 {
   echo "#Function: compare_containers"
-  cmp -b -c $1 $2
+  # cmp -b -c $1 $2
+  cmp $1 $2 && echo "Identical" || echo "Different"; md5sum $1 $2
 }
