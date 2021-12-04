@@ -111,6 +111,7 @@ delete_files_in_container()
   # logging what a file we deleted
   # write need before deleting and saving information on a image containers
   echo "$file_will_be_delete">$TESTCASE_DIR/$FILENAME_TC"_delete.log"
+  md5sum $file_will_be_delete>$TESTCASE_DIR/$FILENAME_TC"_delete.md5"
   # file_all=`find . -type f -name "*"`
   for i in $file_will_be_delete
     do
