@@ -175,7 +175,7 @@ create_and_fill_container()
   #making directory for some recovery utils
   for i in $recovery_dir_array
   do
-    mkdir -p $TESTCASE_DIR/$RECOVERY_DIR/$i
+    mkdir -p $TESTCASE_DIR/$RECOVERY_DIR/$i/$RECOVERY_DIR
   done
 #  echo "#0: Making container"
   making_container $1 $2 $SIZE_CONTAINER
