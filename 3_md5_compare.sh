@@ -1,7 +1,7 @@
 #!/bin/sh
 
 TESTCASE=2
-. ./tc_function_unit.sh
+#. ./tc_function_unit.sh
 
 md5_dir=$CUR_DIR/"md5"
 md5_recovery_file="recovery_files.md5"
