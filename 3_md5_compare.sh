@@ -18,6 +18,7 @@ for i_file in $files_2_compare
     # echo "i_file:$i_file"
     file_name_to_compare=`echo $i_file|sed 's/.*\///'`
     md5_original_file=`grep "$i_file" $md5_deleted_files|awk '{print $1}'`
+    echo "file_name_to_compare:$file_name_to_compare"
     echo "md5_original_file:$md5_original_file"
     md5_recovered_file=`grep $file_name_to_compare $md5_recovery_file|awk {'print $1'}`
     echo "md5_recovered_file:$md5_recovered_file"
