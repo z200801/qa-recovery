@@ -18,7 +18,7 @@ cd $RECOVERY_DIR
 find . -type f -name "*" -exec md5sum {} \; >$CUR_DIR/$fname_md5
 
 # echo "cd to:$md5_dir"
-cd $md5_dir
+# cd $md5_dir
 
 files_2_compare=`cat $md5_deleted_files_log`
 for i_file in $files_2_compare
