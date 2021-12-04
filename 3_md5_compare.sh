@@ -11,7 +11,7 @@ md5_deleted_files="$CUR_DIR/test_fat32_tc"$TESTCASE"_modify.img.deleted_files.md
 
 fname_md5="$CUR_DIR/recovery_files.md5"
 CUR_DIR=`pwd`
-RECOVERY_DIR="recovery"
+RECOVERY_DIR="$CUR_DIR/recovery"
 #Search files in recovery directory and create md5 sum
 
 cd $RECOVERY_DIR
