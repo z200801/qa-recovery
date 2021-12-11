@@ -14,6 +14,15 @@
 TESTCASE_N=3
 . ./tc_function_unit.sh
 
+SIZE_CONTAINER=100
+MAX_DIR=4
+MAX_FILES=4
+fname_sizes="2M"
+
+TEST_FILE_EXT="db"
+NEW_EXT="new"
+MAX_DELETE_FILES=4
+
 # ====================================================================================
 # Main
 clear

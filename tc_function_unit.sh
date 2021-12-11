@@ -109,6 +109,7 @@ delete_files_in_container()
   echo "#Function: Delete some files"
   echo "cd to directory $DIR_MOUNT"
   cd $DIR_MOUNT ||   { echo "Failure #Function delete_files_in_container "; exit 1; }
+  # create array with files will be deleted from random (shuf)
   file_will_be_delete=`find . -type f -name "*"| shuf -n $1`
   # logging what a file we deleted
   # write need before deleting and saving information on a image containers
