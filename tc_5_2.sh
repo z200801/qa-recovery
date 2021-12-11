@@ -8,6 +8,11 @@
 
 TESTCASE_N=5
 . ./tc_function_unit.sh
+TEST_FILE_EXT="db"
+SIZE_CONTAINER=100
+MAX_DIR=4
+MAX_FILES=4
+fname_sizes="2M"
 
 # ==========================================================================================
 # Main
