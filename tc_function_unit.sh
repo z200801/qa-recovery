@@ -145,7 +145,8 @@ create_files_new_names_in_container()
     do
       echo "Original name is:$i"
       echo "New name is:${fln1%%.*}.new"
-      of1="${fln1%%.*}.$NEW_EXT"
+      pt1=`echo $i|sed 's/\.[^.]*$//'`
+      of1=$pt1.$NEW_EXT"
       # echo "Create file:$i.new"
       echo "Create file:$of1"
       # dd if=/dev/urandom of="$i.new" bs=$fname_sizes count=1 status=none
