@@ -14,15 +14,15 @@ DIR_MOUNT="$BASE_DIR/mnt/test_fat32"
 MAX_DELETE_FILES=2
 FILENAME_TC_ORIGINAL="test_fat32_tc"$TESTCASE"_original.img"
 FILENAME_TC="test_fat32_tc"$TESTCASE"_modify.img"
-SIZE_CONTAINER=20
-fname_sizes="1M"
-MAX_DIR=2
-MAX_FILES=2
+SIZE_CONTAINER=100
+fname_sizes="10M"
+MAX_DIR=4
+MAX_FILES=4
 TEST_DIRNAME="test"
 TEST_FILENAME="test_file"
 TEST_FILE_EXT="db"
 RECOVERY_DIR="win11/recovery"
-recovery_dir_array="diskdrill testdisk r-studio datarescue"
+recovery_dir_array="diskdrill-4.4.607.0 testdisk"
 
 # ==========================================================================================
 # 0 Making container

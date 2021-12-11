@@ -2,7 +2,7 @@
 
 TESTCASE_N=1
 . ./tc_function_unit.sh
-
+TEST_FILE_EXT="dat"
 # TestCase 1 - Standard file deletion
 # 0. Making and fill container
 # 1. Script copy original fs container

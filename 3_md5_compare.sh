@@ -1,6 +1,6 @@
 #!/bin/sh
 
-TESTCASE=3
+TESTCASE=1
 #. ./tc_function_unit.sh
 
 CUR_DIR=`pwd`
