@@ -21,6 +21,7 @@ MAX_FILES=2
 TEST_DIRNAME="test"
 TEST_FILENAME="test_file"
 TEST_FILE_EXT="db"
+NEW_EXT="new"
 RECOVERY_DIR="win11/recovery"
 recovery_dir_array="diskdrill testdisk r-studio datarescue"
 
@@ -142,7 +143,11 @@ create_files_new_names_in_container()
   cd $DIR_MOUNT ||   { echo "Failure #create_files_some_names_in_container "; exit 1; }
   for i in $file_will_be_delete
     do
-      echo "Create file:$i.new"
+      echo "Original name is:$i"
+      echo "New name is:${fln1%%.*}.new"
+      of1="${fln1%%.*}.$NEW_EXT"
+      # echo "Create file:$i.new"
+      echo "Create file:$of1"
       dd if=/dev/urandom of="$i.new" bs=$fname_sizes count=1 status=none
     done
   cd $CUR_DIR
