@@ -146,11 +146,11 @@ create_files_new_names_in_container()
       echo "Original name is:$i"
       echo "New name is:${fln1%%.*}.new"
       pt1=`echo $i|sed 's/\.[^.]*$//'`
-      of1=$pt1.$NEW_EXT"
+      of1=$pt1.$NEW_EXT
       # echo "Create file:$i.new"
       echo "Create file:$of1"
-      # dd if=/dev/urandom of="$i.new" bs=$fname_sizes count=1 status=none
-       dd if=/dev/urandom of=$of1 bs=$fname_sizes count=1 status=none
+       dd if=/dev/urandom of="$i.new" bs=$fname_sizes count=1 status=none
+      # dd if=/dev/urandom of=$of1 bs=$fname_sizes count=1 status=none
     done
   cd $CUR_DIR
 }
