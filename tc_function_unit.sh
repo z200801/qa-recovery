@@ -24,6 +24,7 @@ TEST_FILE_EXT="db"
 NEW_EXT="new"
 RECOVERY_DIR="win11/recovery"
 recovery_dir_array="diskdrill-4.4.607.0 testdisk"
+SAMPLES_FILE_ARCH="file_samples.tgz"
 
 # ==========================================================================================
 # 0 Making container
@@ -95,6 +96,23 @@ create_files_in_container()
         dd if=/dev/urandom of=$fl1 bs=$fname_sizes count=1 status=none
       done
   done
+
+  cd $DIR_MOUNT
+  find . -type f -name "*" -exec md5sum {} \; >$file_md5
+  cd $CUR_DIR
+}
+
+# Copy samples files to container and calculate md5 sum
+copy_samples_files_2_container()
+{
+  MOUNT_FILENAME=`mount|grep $cur_user|grep mnt|awk {'print $1'}|sed 's/.*\///'`
+  file_md5=$TESTCASE_DIR/$MOUNT_FILENAME".md5"
+  echo "MOUNT_FILENAME: $MOUNT_FILENAME"
+
+  touch $file_md5
+  echo "file_md5: $file_md5"
+
+  tar xvf SAMPLES_FILE_ARCH -C $DIR_MOUNT
 
   cd $DIR_MOUNT
   find . -type f -name "*" -exec md5sum {} \; >$file_md5
@@ -190,7 +208,8 @@ create_and_fill_container()
 #  echo "#0: Mount container"
   mount_container $1 $2
 #  echo "#0: Create files in container"
-  create_files_in_container
+  # create_files_in_container
+  copy_samples_files_2_container()
 #  echo "#0: UnMount container"
   umount_container $DIR_MOUNT
 }
