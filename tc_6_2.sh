@@ -7,7 +7,7 @@
 TESTCASE_N=6
 #0x4 - 0x43 FAT0
 #0x44 - 0x83 FAT1
-COUNT_BYTE_TO_DAMAGE="0x100"
+COUNT_BYTE_TO_DAMAGE="0x200"
 SEEK_TO_DAMAGE="0x0"
 . ./tc_function_unit.sh
 TEST_FILE_EXT="db"
@@ -15,6 +15,7 @@ SIZE_CONTAINER=100
 MAX_DIR=4
 MAX_FILES=4
 fname_sizes="2M"
+SAMPLES_FILE_ARCH="file_samples_jpg.tgz"
 
 # ==========================================================================================
 # Main
