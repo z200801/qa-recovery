@@ -25,7 +25,7 @@ NEW_EXT="new"
 RECOVERY_DIR="win11/recovery"
 recovery_dir_array="diskdrill-4.4.607.0 testdisk"
 SAMPLES_FILE_ARCH="file_samples.tgz"
-
+container_bs="4k"
 # ==========================================================================================
 # 0 Making container
 # making_container $FILENAME_TC_ORIGINAL $DIR_MOUNT $SIZE_CONTAINER
@@ -33,7 +33,7 @@ making_container()
 {
  echo "#Function: making container"
  mkdir -p $2
- dd if=/dev/zero of=$1 bs=1M count=$3
+ dd if=/dev/zero of=$1 bs=$container_bs count=$3
  mkfs.vfat $1
 }
 

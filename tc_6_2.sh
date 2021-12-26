@@ -15,7 +15,7 @@ SIZE_CONTAINER=100
 MAX_DIR=4
 MAX_FILES=4
 fname_sizes="2M"
-SAMPLES_FILE_ARCH="file_samples_jpg.tgz"
+SAMPLES_FILE_ARCH="video_file_samples.tgz"
 
 # ==========================================================================================
 # Main
