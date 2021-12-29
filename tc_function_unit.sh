@@ -34,7 +34,7 @@ making_container()
  echo "#Function: making container"
  mkdir -p $2
  dd if=/dev/zero of=$1 bs=$container_bs count=$3
- mkfs.vfat $1
+ mkfs.vfat -F32 $1
 }
 
 # Mount container
